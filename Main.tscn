@@ -1,0 +1,116 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Main.gd" type="Script" id=1]
+[ext_resource path="res://Error.gd" type="Script" id=2]
+
+[node name="Main" type="Node"]
+script = ExtResource( 1 )
+hfp = NodePath("HFP")
+hfp_file = NodePath("FileDialog_HFP")
+srt = NodePath("SRT")
+srt_file = NodePath("FileDialog_SRT")
+insert = NodePath("InsertSubtitles")
+
+[node name="HFP" type="HBoxContainer" parent="."]
+editor/display_folded = true
+margin_left = 297.74
+margin_top = 93.6543
+margin_right = 685.74
+margin_bottom = 126.654
+
+[node name="Button_HFP" type="Button" parent="HFP"]
+margin_right = 47.0
+margin_bottom = 32.0
+text = "Open"
+
+[node name="LineEdit_HFP" type="LineEdit" parent="HFP"]
+margin_left = 51.0
+margin_right = 388.0
+margin_bottom = 32.0
+size_flags_horizontal = 3
+editable = false
+placeholder_text = ".hfp file..."
+
+[node name="SRT" type="HBoxContainer" parent="."]
+editor/display_folded = true
+margin_left = 303.769
+margin_top = 199.168
+margin_right = 691.769
+margin_bottom = 232.168
+
+[node name="Button_SRT" type="Button" parent="SRT"]
+margin_right = 47.0
+margin_bottom = 33.0
+text = "Open"
+
+[node name="LineEdit_SRT" type="LineEdit" parent="SRT"]
+margin_left = 51.0
+margin_right = 387.0
+margin_bottom = 33.0
+size_flags_horizontal = 3
+editable = false
+placeholder_text = ".srt file..."
+
+[node name="FileDialog_HFP" type="FileDialog" parent="."]
+margin_left = 168.652
+margin_top = 132.245
+margin_right = 786.652
+margin_bottom = 424.245
+window_title = "Open a File"
+resizable = true
+dialog_hide_on_ok = true
+mode = 0
+access = 2
+filters = PoolStringArray( "*.hfp" )
+show_hidden_files = true
+current_dir = "/home/drzanuff/Área de Trabalho/SuperLegend"
+current_path = "/home/drzanuff/Área de Trabalho/SuperLegend/"
+
+[node name="FileDialog_SRT" type="FileDialog" parent="."]
+margin_left = 168.652
+margin_top = 132.245
+margin_right = 786.652
+margin_bottom = 424.245
+window_title = "Open a File"
+resizable = true
+dialog_hide_on_ok = true
+mode = 0
+access = 2
+filters = PoolStringArray( "*.srt" )
+show_hidden_files = true
+current_dir = "/home/drzanuff/Área de Trabalho/SuperLegend"
+current_path = "/home/drzanuff/Área de Trabalho/SuperLegend/"
+
+[node name="InsertSubtitles" type="Button" parent="."]
+margin_left = 438.184
+margin_top = 300.714
+margin_right = 548.184
+margin_bottom = 326.714
+text = "Insert Subtitles"
+
+[node name="Error" type="AcceptDialog" parent="."]
+editor/display_folded = true
+margin_left = 275.0
+margin_top = 126.0
+margin_right = 729.0
+margin_bottom = 312.0
+script = ExtResource( 2 )
+
+[node name="Text" type="Label" parent="Error"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 446.0
+margin_bottom = 150.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Invalid! Please, create a Panel
+with the name Subtitle"
+align = 1
+
+[connection signal="pressed" from="HFP/Button_HFP" to="." method="_on_Button_HFP_pressed"]
+[connection signal="pressed" from="SRT/Button_SRT" to="." method="_on_Button_SRT_pressed"]
+[connection signal="file_selected" from="FileDialog_HFP" to="." method="_on_FileDialog_HFP_file_selected"]
+[connection signal="hide" from="FileDialog_HFP" to="." method="_on_FileDialog_HFP_hide"]
+[connection signal="file_selected" from="FileDialog_SRT" to="." method="_on_FileDialog_SRT_file_selected"]
+[connection signal="hide" from="FileDialog_SRT" to="." method="_on_FileDialog_SRT_hide"]
+[connection signal="pressed" from="InsertSubtitles" to="." method="_on_InsertSubtitles_pressed"]
